@@ -1,5 +1,17 @@
 # magnetar-deer
 
+## Setup
+
+Run `pip install .`
+
+Gemini API
+Create `.../agent/agent.env`
+
+```
+# /agent.env
+GEMINI_API_KEY=<YOUR API KEY HERE>
+```
+
 ## Project Short-term Goals
 Prompt-Action Goal
 Prompt: "I want to track my workouts to record the name of the workout, the weight used or duration, and any notes I might have, + date and time if provided."
@@ -37,6 +49,7 @@ magnetar-deer
 |----agent.py
 |----constraints.py/formatting 
 
+```
 # ============================================================
 # BASIC GIT WORKFLOW (FOR THIS PROJECT)
 # ============================================================
@@ -122,3 +135,4 @@ git push -u origin feature-name
 # git add .
 # git commit -m "message"
 # git push
+```

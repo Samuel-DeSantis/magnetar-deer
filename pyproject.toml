@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "magnetar-deer"
+version = "0.1.0"
+description = "NL to SQL Agent"
+requires-python = ">=3.8"
+dependencies = [
+    "google-genai",
+]
+
+[project.scripts]
+magnetar-deer = "magnetar_deer.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "python-dotenv"
+]
