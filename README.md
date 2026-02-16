@@ -1,16 +1,24 @@
 # magnetar-deer
+Natural Language (NL) to SQL agent.
+
+## Contents
+- [Setup](#setup)
+- [How to](#how-to-run-the-entire-program)
+- [Project Short-term Goals](#project-short-term-goals)
+- [Git Workflow](#git-workflow)
 
 ## Setup
-
 Run `pip install .`
 
-Gemini API
+Gemini API <= To be moved to ROOT instead of /agent
 Create `.../agent/agent.env`
 
 ```
 # /agent.env
 GEMINI_API_KEY=<YOUR API KEY HERE>
 ```
+## How to run the entire program
+Run `magnetar-deer` from the root of the project. It will execute everything in `../magnetar_deer/main.py`
 
 ## Project Short-term Goals
 Prompt-Action Goal
@@ -18,6 +26,7 @@ Prompt: "I want to track my workouts to record the name of the workout, the weig
 Action: Create "Workout" table with Name:string, Weight:Int, Duration:Int, Notes:string
 Prompt: "Today I benched 135lb, and squated 225lbs, and my knee felt a little funny."
 
+```
 {
     'prompt': <user provided prompt>,
     'reponse': {
@@ -31,11 +40,13 @@ Prompt: "Today I benched 135lb, and squated 225lbs, and my knee felt a little fu
         }
     }
 }
+```
 
 How much power does the agent have?
     - Can the agent execute code? Does the agent only parse the code.
 
 ## Draft Structure
+```
 magnetar-deer
 |--main.py
 |--/db #SQLalchemy
@@ -48,7 +59,9 @@ magnetar-deer
 |--/agent
 |----agent.py
 |----constraints.py/formatting 
+```
 
+## Git Workflow
 ```
 # ============================================================
 # BASIC GIT WORKFLOW (FOR THIS PROJECT)

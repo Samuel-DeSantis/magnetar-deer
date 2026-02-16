@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 
 from google import genai
 
-load_dotenv("config.env")
+#TODO: Move .env file to ROOT and update dotenv accordingly
+load_dotenv("agent.env")
 api_key = os.getenv("GEMINI_API_KEY")
 
 # The client gets the API key from the environment variable `GEMINI_API_KEY`.
