@@ -9,6 +9,7 @@ description = "NL to SQL Agent"
 requires-python = ">=3.8"
 dependencies = [
     "google-genai",
+    "sqlalchemy>=2.0"
 ]
 
 [project.scripts]

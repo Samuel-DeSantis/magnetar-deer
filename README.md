@@ -8,7 +8,11 @@ Natural Language (NL) to SQL agent.
 - [Git Workflow](#git-workflow)
 
 ## Setup
-Run `pip install .`
+1. Install all dependencies with: `pip install -e .`
+    
+    __NOTE:__ ` -e` enables *editable* mode and doesn't create a packaged `/build` folder and using `.` looks at the dependencies listed in `pyproject.toml` for the project setup. See: `dependencies` and `dev` to see what is currently added
+2. 
+
 
 Gemini API <= To be moved to ROOT instead of /agent
 Create `.../agent/agent.env`
