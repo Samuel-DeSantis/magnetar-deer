@@ -13,16 +13,13 @@ Natural Language (NL) to SQL agent.
     __NOTE:__ ` -e` enables *editable* mode and doesn't create a packaged `/build` folder and using `.` looks at the dependencies listed in `pyproject.toml` for the project setup. See: `dependencies` and `dev` to see what is currently added
 2. 
 
-
-Gemini API <= To be moved to ROOT instead of /agent
-Create `.../agent/agent.env`
-
+Create `.env` in ROOT dir
 ```
-# /agent.env
 GEMINI_API_KEY=<YOUR API KEY HERE>
 ```
 ## How to run the entire program
-Run `magnetar-deer` from the root of the project. It will execute everything in `../magnetar_deer/main.py`
+- Run `magnetar-deer` from the root of the project. It will execute everything in `../magnetar_deer/main.py`
+- If you want to play around with the Gemini agent run `python3 src/magnetar_deer/agent/playground.test.py` from root
 
 ## Project Short-term Goals
 Prompt-Action Goal
