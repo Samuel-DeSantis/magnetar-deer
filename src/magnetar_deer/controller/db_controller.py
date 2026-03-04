@@ -1,36 +1,84 @@
-'''
-Docstring for magnetar_deer.controller.db_controller
+from sqlalchemy import Table, insert, select, update, delete
 
-Goal: Add CRUD (Create, Read, Update, Delete) commands to controller to interface between the DB and terminal
-
-# Controller Methods 
-Controller.create_table(...)
-
-Controller.insert(...)
-
-Controller.select(...)
-
-Controller.update(...)
-
-Controller.delete(...)
-'''
-
-class Table:
-    pass # This is a type placeholder for SQLalchemy Table
+from magnetar_deer.db.engine import engine, metadata
+from magnetar_deer.db.table_builder import table_builder
 
 class Controller:
     
     def create_table(self, name: str, columns: dict) -> Table:
-        pass
+        """
+        Create a new database table
 
-    def insert(self, table: Table, record: dict) -> None: 
-        pass # Enable multi insertion of records?
+        users_table = {
+            "name" : "Users",
+            "fields": {
+                "name": "string",
+                "age": "integer",
+            }
+        }
 
-    def select(self, table: Table) -> list: 
-        pass # How do we want to query? add .where, .order_by or keep general
+        Parameters:
+            name (str): Name of the table
+            columns (dict): A dictionary of column-datatype pairs
+        Returns:
+            table (Table): SQLAlchemy Table object        
+        """
+        return table_builder(name, columns)
 
-    def update(self, table: Table, id: int) -> None:
-        pass
+    def insert(self, table: Table, records: dict | list[dict]) -> None: 
+        """
+        Insert record into table
+
+        Parameters:
+            table (Table): SQLAlchemy Table object
+            record (dict | list[dict]): Dictionary or list of dictionaries with column-value pairs
+
+        Returns:
+            Success/Fail
+        """
+        with engine.connect() as connection:
+            connection.execute(insert(table), records)
+            connection.commit()
+
+    def select(self, table: Table) -> list: # TODO: Come up with a system for this... Param or method based?
+        """
+        Reads record(s) from table
+
+        Parameters:
+
+        Returns:
+            Record(s)
+        """
+        with engine.connect() as connection:
+            result = connection.execute(select(table))
+            return result.fetchall() #Selects ALL records
+
+    def update(self, table: Table, id: int, values: dict) -> None:
+        """
+        Update record
+
+        Parameters:
+            table (Table): SQLAlchemy table object
+            id (int): ID of record to be updated
+            values (dict): Dictionary of column-value pairs to update
+        Returns:
+            Record
+        """
+        with engine.connect() as connection:
+            connection.execute(update(table).where(table.columns.id == id).values(**values))
+            connection.commit()
 
     def delete(self, table: Table, id: int) -> None:
-        pass
+        """
+        Delete specified record
+
+        Parameters:
+            table (Table): SQLAlchemy table object
+            id (int): ID of record to be deleted
+        
+        Returns:
+            Success/Fail
+        """
+        with engine.connect() as connection:
+            connection.execute(delete(table).where(table.columns.id == id))
+            connection.commit()

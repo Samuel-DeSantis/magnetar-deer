@@ -1,6 +1,15 @@
 from sqlalchemy import Integer, String, Float, DateTime, Boolean
 
 def map_type(ftype: str):
+    """
+    Mapping common types to SQLAlchemy types
+
+    Parameters:
+        ftype (str): String of column data type
+
+    Returns:
+        SQLAlchemy data type object
+    """
     ftype = ftype.lower()
 
     match ftype:
